@@ -3,6 +3,6 @@ Claire Lifrieri
 
 | Homework | Labs | Project |
 | :------: |:----:| :------:|
-| [week01](homework/week1/README.md)| [week01](labs/week1/README.md) |  |
-| col 2 is      | centered      |  |
-| zebra stripes | are neat      |  |
+| [week1](homework/week1/README.md)| [week1](labs/week1/README.md) |  |
+| [week2](homework/week2/README.md)| [week2](labs/week2/README.md) |  |
+| [week3](homework/week3/README.md)| [week3](labs/week3/README.md) |  |
