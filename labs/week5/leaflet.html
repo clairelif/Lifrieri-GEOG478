@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Claire Lifrieri First Web Map</title>    
+    <h1>Claire Lifrieri First Web Map</h1>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+    integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+    crossorigin=""></script>
+    <style>    
+        #mapid { height: 500px; }
+    </style>
+</head>
+<body> 
+    <div id="mapid"></div>
+
+    <script>
+        var mymap = L.map('mapid').setView([30.615902, -96.338674], 15);
+       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    accessToken: 'pk.eyJ1IjoiY2xhaXJpZSIsImEiOiJjbThkZm1ra2wwbWNxMnZvODA4dm9wNWVlIn0.iWgL94YUJfmOITZKulQouw'
+}).addTo(mymap);
+
+        var markerKyle = L.marker([30.610004248520802, -96.34048328571613]).addTo(mymap); //kyle field
+        var circle = L.circle([30.610004248520802, -96.34048328571613], { //kyle field
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 100
+}).addTo(mymap);
+
+    var markerAcademic = L.marker([30.617872188062318, -96.33665379578431]).addTo(mymap); //o&M
+var polygon = L.polygon([ //o&M
+    [30.617742094950227, -96.3369573238668],
+    [30.61806186304689, -96.33656389520672],
+    [30.617773444810318, -96.33639632374039],
+    [30.61754351102866, -96.3367970168938]
+]).addTo(mymap);
+
+var markerOM = L.marker([30.615784109988795, -96.3407908805086]).addTo(mymap); //academic building
+var polygon = L.polygon([ //academic building
+    [30.616155936579787, -96.34092656720946],
+    [30.61560587855463, -96.3404230981352], 
+    [30.615449157539665, -96.34063376959182], 
+    [30.616029945911393, -96.34112295585547]
+]).addTo(mymap);
+
+markerKyle.bindPopup("<b>Kyle Field</b><br>30.610004248520802, -96.34048328571613").openPopup();
+markerOM.bindPopup("<b>O&M Building</b><br>30.61786044961605, -96.33665379578431").openPopup();
+markerAcademic.bindPopup("<b>Academic Building</b><br>30.615784109988795, -96.3407908805086").openPopup();
+
+function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+}
+
+mymap.on('click', onMapClick);
+
+map.locate({setView: true, maxZoom: 16});
+    </script>
