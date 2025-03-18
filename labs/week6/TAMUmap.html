@@ -20,7 +20,7 @@
     <h1>Claire Lifrieri TAMU Map</h1>
     <div id="mapid"></div>
     
-    <script src="labs\week6\tamubuildings.js"></script>
+    <script src="labs\week6\tamubuildings.geo"></script>
     <script>
         var map = L.map('mapid').setView([30.615, -96.34], 15);
 
@@ -29,29 +29,26 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        var tamuBuildings = {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            "type": "Feature",
-            "properties": {
-                "BldgName": "TEEX - LAW UXO Search Grid Pavilion",
-                "Number": "8601",
-                "Entries": 0
-            },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [[
-                    [-96.475671, 30.627146], 
-                    [-96.475679, 30.627078], 
-                    [-96.475521, 30.627066], 
-                    [-96.475515, 30.627137], 
-                    [-96.475671, 30.627146]
-                ]]
-            }
-        }
-    ]
-};
+       // Fetch GeoJSON data
+       fetch('tamubuildings.js')
+            .then(response => response.json())  // Directly parse JSON
+            .then(data => {
+                console.log("Loaded GeoJSON data:", data); // Debugging
+                geojson = L.geoJson(data, {
+                    style: { color: "maroon", weight: 2, opacity: 0.6, fillOpacity: 0.4 },
+                    onEachFeature: function (feature, layer) {
+                        layer.on({
+                            mouseover: highlightFeature,
+                            mouseout: resetHighlight,
+                            click: zoomToFeature
+                        });
+                    }
+                }).addTo(map);
+
+                // Auto-fit map to building boundaries
+                map.fitBounds(geojson.getBounds());
+            })
+            .catch(error => console.error('Error loading the GeoJSON data:', error));
 
         </script>
   </body>
