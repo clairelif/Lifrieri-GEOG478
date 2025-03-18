@@ -38,7 +38,7 @@
 
     var LeafIcon = L.Icon.extend({
         options: {
-            shadowUrl: 'icons/leaf-shadow.png',
+            shadowUrl: 'leaf_icons/leaf-shadow.png',
             iconSize: [38, 95],
             shadowSize: [50, 64],
             iconAnchor: [22, 94],
@@ -47,9 +47,9 @@
         }
     });
 
-    var greenIcon = new LeafIcon({iconUrl: 'icons/leaf-green.png'}),
-        redIcon = new LeafIcon({iconUrl: 'icons/leaf-red.png'}),
-        orangeIcon = new LeafIcon({iconUrl: 'icons/leaf-orange.png'});
+    var greenIcon = new LeafIcon({iconUrl: 'leaf_icons/leaf-green.png'}),
+        redIcon = new LeafIcon({iconUrl: 'leaf_icons/leaf-red.png'}),
+        orangeIcon = new LeafIcon({iconUrl: 'leaf_icons/leaf-orange.png'});
 
     L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map).bindPopup("I am a green leaf.");
     L.marker([51.495, -0.083], {icon: redIcon}).addTo(map).bindPopup("I am a red leaf.");
