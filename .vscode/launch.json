@@ -1,0 +1,14 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open tutorial2.html",
+            "file": "c:\\Dev\\Lifrieri-GEOG478\\labs\\week6\\tutorial2.html"
+        }
+    ]
+}
