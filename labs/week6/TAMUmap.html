@@ -10,15 +10,24 @@
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
     <style>
-      #mapid {
-        height: 500px;
-        width: 100%;
-      }
+       #mapid { height: 800px; }
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
     </style>
   </head>
   <body>
+    <h1>Claire Lifrieri TAMU Map</h1>    
     <div id="mapid"></div>
-
     <script type="text/javascript"></script>
 
     <script>
@@ -63,14 +72,13 @@
         };
 
         info.update = function (props) {
-            this._div.innerHTML = '<h4>TAMU Buildings Name and Abbr</h4>' + (props ?
+            this._div.innerHTML = '<h4>TAMU Buildings and Abbreviations</h4>' + (props ?
                 '<b>' + props.BldgName + '</b><br />' + props.BldgAbbr
                 : 'Hover over a building');
         };
 
         info.addTo(map);
 
-        // Fetch GeoJSON data and add it to the map
         fetch('https://raw.githubusercontent.com/clairelif/Lifrieri-GEOG478/refs/heads/main/labs/week6/tamubuildings.geojson')
             .then(response => response.text())
             .then(text => {
