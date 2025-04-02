@@ -9,3 +9,5 @@ Claire Lifrieri
 | [week4](homework/week4)| [week4](labs/week4) |  |
 | [week5](homework/week5)| [week5](labs/week5) |  |
 | [week6](homework/week6)| [week6](labs/week6) |  |
+| [week7](homework/week7)| [week7](labs/week7) |  |
+| [week8](homework/week8)| [week8](labs/week8) |  |
