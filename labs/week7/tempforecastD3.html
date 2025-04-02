@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>College Station Weekly Temperature Forecast</title>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+    </head>
+    <body>
+        <div id="chart" style="width: 600px; height: 400px;"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var high = [82, 81, 81, 70, 77, 78, 79, 80];
+                var low = [67, 59, 50, 47, 51, 60, 66, 66];
+
+                Highcharts.chart('chart', {
+                    chart: {
+                        type: 'line'
+                    },
+                    title: {
+                        text: 'College Station Weekly Temperature Forecast'
+                    },
+                    xAxis: {
+                        categories: ['Sat', 'Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'],
+                        title: {
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Temperature (F)'
+                        }
+                    },
+                    series: [
+                        {
+                            name: 'Highest (F)',
+                            data: high,
+                            color: 'red',
+                            dataLabels: {
+                                enabled: true
+                            }
+                        },
+                        {
+                            name: 'Lowest (F)',
+                            data: low,
+                            color: 'lightblue',
+                            dataLabels: {
+                                enabled: true
+                            }
+                        },
+                    ],
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
