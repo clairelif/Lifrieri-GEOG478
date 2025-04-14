@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Campus Waste Map</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.6/"></script>
+    <div class="tab">
+      <a href="Home.html">Home</a>
+      <a href="Survey_Map.html">Map</a>  
+      <a href="Entries_Page.html">Entries</a>
+    </div>
+    
+    <script>
+      // Highlight the active tab based on the URL
+      const links = document.querySelectorAll('.tab a');
+      const currentPage = window.location.pathname.split('/').pop();
+    
+      links.forEach(link => {
+        if (link.getAttribute('href') === currentPage || currentPage === '' && link.getAttribute('href') === 'Home.html') {
+          link.classList.add('active');
+        }
+      });
+    </script>
+    <style>
+      .tab {
+        overflow: hidden;
+        border: 1px solid #000000;
+        background-color: #500000;
+        box-sizing: border-box;
+      }
+  
+      .tab a {
+        background-color: #cccccc;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        text-decoration: none;
+        color: #ffffff;
+        transition: 0.3s;
+      }
+  
+      .tab a:hover {
+        background-color: #ddd;
+        color: #000;
+      }
+  
+      .tab a.active {
+        background-color: #ccc;
+        color: #000;
+      }
+      .tab::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+      body {
+        padding: 20px;
+        margin: 0;
+      }
+  
+      #viewDiv {
+        height: 800px;
+        width: 100%;
+        border: 1px solid #ccc;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/layers/FeatureLayer",
+        "dojo/domReady!"
+      ], function(Map, MapView, FeatureLayer) {
+      
+        var map = new Map({
+          basemap: "streets"
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+          center: [-96.339469, 30.617152], // Coordinates for College Station, TX
+          zoom: 16
+        });
+
+        // Add feature layer
+        var featureLayer = new FeatureLayer({
+          url: "https://services1.arcgis.com/qr14biwnHA6Vis6l/arcgis/rest/services/Campus_Waste_Management_Survey__(view)/FeatureServer"
+        });
+
+        map.add(featureLayer);
+
+        // Popup template for displaying feature information
+        var popupTemplate = {
+          title: "Issue at {spot_on_campus}",
+          actions: [{ id: "find" }],
+          content: [{
+            type: "fields",
+            fieldInfos: [{
+              fieldName: "hazardmaintenance_need",
+              label: "Issue"
+            }, {
+              fieldName: "observation_date_and_time",
+              label: "Time"
+            }, {
+              fieldName: "level_of_severity",
+              label: "Severity"
+            }]
+          }]
+        };
+
+        featureLayer.popupTemplate = popupTemplate;
+      });
+    </script>
+
+  </body>
+</html>
